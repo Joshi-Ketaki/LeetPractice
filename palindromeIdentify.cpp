@@ -37,6 +37,7 @@ Constraints:
     -231 <= x <= 231 - 1
 
 */
+// Not using strings
 class Solution {
 public:
     bool isPalindrome(int x) {
@@ -51,4 +52,23 @@ public:
        //cout << "\nans and x" << ans <<  "\t" <<x;
        return (x == ans || x == ans/10);
      }
+};
+
+// Using strings
+class Solution {
+public:
+    bool isPalindrome(int x) {
+     if(x < 0 || x > 0 && x%10==0) return false;
+     // using strings
+     string xs = to_string(x);
+     //cout << "xs: "<< xs;
+     int left = 0, right = xs.length() - 1;
+     while(left < right)
+     {
+         if(xs[left] != xs[right]) return false;
+         left++;
+         right--;
+     }
+     return true;
+    }
 };
