@@ -38,6 +38,15 @@ Constraints:
 
 Follow up: Could you do better than O(n2)?
 
+OR
+
+Given a list of 2D point coordinates, determine if a symmetrical vertical line x=a exists and return the value of that vertical line.
+E.g:
+
+    [(1, 3), (2, 5), (3, 5), (4,3)] has a symmetrical line x=2.5
+    [(1, 3), (2, 5), (3, 5), (4, 2)] does not have a symmetrical line however
+
+  
 */
 
 class Solution {
@@ -58,7 +67,9 @@ public:
        }
 
        float xmirror = xmin + xmax;
+       // this is the value of the symmetric line
        xmirror = xmirror/2.0;
+       cout << "xmirror" << xmirror;
        // iterate through points to find complement in set....not through set
        for(auto p: points)
        {
