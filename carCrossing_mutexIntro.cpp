@@ -72,6 +72,8 @@ Constraints:
 
 // why use mutex here:
 // here we are not signalling that after a strict task ordering, the earlier one tells the next one to start after it has finished
+// we can convey a sense of ordering via the semaphore. mutex lock is a lock for all threads....so how can you convey sense of ordering
+// so mutex here.
 // here we are performing the action for all available objects at the next possible opening
 class TrafficLight {
 public:
