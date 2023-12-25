@@ -70,6 +70,9 @@ Constraints:
 
 */
 
+// why use mutex here:
+// here we are not signalling that after a strict task ordering, the earlier one tells the next one to start after it has finished
+// here we are performing the same action for all available objects at the next possible opening
 class TrafficLight {
 public:
     //sem_t cross;
