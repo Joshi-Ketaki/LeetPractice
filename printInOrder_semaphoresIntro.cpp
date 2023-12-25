@@ -41,6 +41,10 @@ Constraints:
 
 */
 
+// why use semaphore here:
+// here we are signalling that after a strict task ordering, the earlier one tells the next one to start after it has finished
+// here we are not performing the action for all available objects at the next possible opening
+
 class Foo {
 public:
     sem_t firstJobDone;
