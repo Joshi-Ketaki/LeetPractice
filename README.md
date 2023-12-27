@@ -5,17 +5,17 @@ This repository is a record of my personal coding sessions. I log the different 
 The repository has multiple branches. Each branch is maintained for particular coding pattern or by the dominant data structure used in the problems solved there.
 The different branches have different patterns of coding problems:
 1. Master and custom_memory_management_implementations: My implementaion of Memory management operations (malloc, calloc, realloc, free, memcpy implementations)
-2. Dynamic Programming (DP) : The DDP coding patterns.
+2. Dynamic Programming (DP) : The DP coding patterns.
 3. Concurrency: Problems that solve for mutithreading.
-4. 
+4. Backtracking: The backtracking coding pattern.
+   
 Data Structures:
-5. Linked Lists
-6. Backtracking
-7. Graphs
-8. Trees
+1. Linked Lists
+2. Graphs
+3. Trees
 
-Misc:
-1.high_frequency: Some commonly seen coding patterns.
+Misc: 
+high_frequency: Some commonly seen coding patterns.
 
 ## Structure of the Files:
 Each file has the question written in comments followed by my implementation of the solution along with a few notes.
