@@ -1,4 +1,4 @@
-This repository is a record of my personal coding sessions. I log the different coding challenges or problems that I solve using Leetcode or my implementations of memory management operations here.
+This repository is a record of my personal coding sessions. I program using C and C++. I log the different coding challenges or problems that I solve using Leetcode (mostly in C++) or my implementations of memory management operations (in C) here.
 
 ## Structure of the Repository:
 
