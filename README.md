@@ -15,7 +15,8 @@ Data Structures:
 3. Trees
 
 Misc: 
-high_frequency: Some commonly seen coding patterns.
+1. basics: Some basic examples to familiarize yourself with usage of maps/sets or some thinking patterns.
+2. high_frequency: Some commonly seen coding patterns.
 
 ## Structure of the Files:
 Each file has the question written in comments followed by my implementation of the solution along with a few notes.
