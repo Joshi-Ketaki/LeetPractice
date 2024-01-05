@@ -48,6 +48,9 @@ Constraints:
  *     ListNod
  e(int x, ListNode *next) : val(x), next(next) {}
  * };
+
+ the tricky part comes up is creation of the third list. do you create a node and start from there
+ or create a dummy node and start filling up from the next one.
  */
 class Solution {
 public:
