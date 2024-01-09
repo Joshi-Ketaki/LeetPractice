@@ -1,3 +1,18 @@
+/**
+(C) Ketaki Joshi, November, 2023
+This code has been developed as part of the personal practice sessions for Ketaki Joshi. These are quickly implemented solutions.
+So, they will not have asserts/checks or comments at all points.
+If you intend to use this code, you are responsible for your own bounds checking, and other checks to be inserted or performed.
+
+Resources: 
+Here is a good starting tutorial if you want to start from scratch or want to refresh your concepts: 
+1. https://manybutfinite.com/post/anatomy-of-a-program-in-memory/
+I refreshed concepts by sitting through the entirety of this tutorial, so some parts of the implementation might look similar. The difference is 
+that I have also added mmap versions in addition to sbrk implementation. You can skip either one.
+This tutorial can take you to multiple sources as you read through it. 
+Try to cater your study by prioritizing what you need to brush up on. If you do not structure it, you might get lost. 
+
+**/
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
