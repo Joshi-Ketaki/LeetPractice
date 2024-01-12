@@ -7,7 +7,7 @@ If you intend to use this code, you are responsible for your own bounds checking
 Resources: 
 Here is a good starting tutorial if you want to start from scratch or want to refresh your concepts: 
 1. https://manybutfinite.com/post/anatomy-of-a-program-in-memory/
-I refreshed concepts by sitting through the entirety of this tutorial, so some parts of the implementation might look similar. The difference is 
+I refreshed concepts through this tutorial, so some parts of the implementation might look similar. The difference is 
 that I have also added mmap versions in addition to sbrk implementation. You can skip either one.
 This tutorial can take you to multiple sources as you read through it. 
 Try to cater your study by prioritizing what you need to brush up on. If you do not structure it, you might get lost. 
