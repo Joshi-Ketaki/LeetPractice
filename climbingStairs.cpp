@@ -40,7 +40,7 @@ Constraints:
 
 
 */
-class Solution {
+/*class Solution {
 public:
     int climbStairs(int n) {
         assert(n >= 1 && n <= 45);
@@ -52,5 +52,31 @@ public:
             two = temp;
         }
         return one;
+    }
+};*/
+
+// More DP like approach of memoization with 1 D array
+class Solution {
+public:
+    int climbStairs(int n) {
+        assert(n >= 1 && n <= 45);
+        //int one=1, two=1, temp;
+        /*for(int i = 0; i < n-1; i++)
+        {
+            temp = one;
+            one = one+two;
+            two = temp;
+        }*/
+        //return one;
+        vector<int> dp;
+        // dp[0]
+        dp.push_back(1);
+        // dp[1]
+        dp.push_back(2);
+        for(int i = 2; i < n; i++)
+        {
+            dp.push_back(dp[i-1] + dp[i-2]);
+        }
+        return dp[n-1];
     }
 };
