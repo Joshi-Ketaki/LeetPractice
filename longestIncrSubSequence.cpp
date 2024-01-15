@@ -46,7 +46,27 @@ public:
         assert(nums.size() >=1 && nums.size() <= 2500);
         vector<int> dp (nums.size(), 1);
 
-        for(int i = nums.size(); i >= 0; i--)
+        for(int i = 1; i < nums.size(); i++)
+        {
+            // j is following i
+            for(int j =0; j < i; j++)
+            {
+                // longest subsequence. the one ahead is greater
+                if(nums[i] > nums[j])
+                {
+                    dp[i] = max(dp[i], 1+dp[j]);
+                }
+            }
+        }
+        
+        int max = 0;
+        for(int i = 0; i < dp.size(); i++)
+        {
+            if(dp[i]> max)
+                max = dp[i];
+        }
+        return max;
+        /*for(int i = nums.size(); i >= 0; i--)
         {
             for(int j = i+1; j < nums.size(); j++)
             {
@@ -61,8 +81,8 @@ public:
         {
             if(d > max)
                 max = d;
-        }
+        }*/
         //*(max_element(dp.begin(), dp.end()))
-        return max;
+       // return max;
     }
 };
