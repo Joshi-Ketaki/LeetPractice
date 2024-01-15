@@ -37,7 +37,7 @@ Constraints:
 
 */
 
-class Solution {
+/*class Solution {
 public:
     int rob(vector<int>& nums) {
         assert(nums.size() <= 100 && nums.size() >= 1);
@@ -51,5 +51,32 @@ public:
 
         }
         return oldMax;
+    }
+};*/
+
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        assert(nums.size() <= 100 && nums.size() >= 1);
+        /*int r1 = 0, oldMax = 0;
+        int temp;
+        for(int i = 0; i < nums.size(); i++) {
+            assert(nums[i] <= 400 && nums[i] >=0);
+            temp = max(r1 + nums[i], oldMax);
+            r1 = oldMax;
+            oldMax = temp;
+
+        }
+        return oldMax;*/
+        // houses done. so max profit to be earned is 0 at this point
+        vector<int> maxAmt(nums.size()+1, 0);
+        maxAmt[nums.size()] = 0;
+        // amt to be earned is only what is left in last house if this is chosen
+        maxAmt[nums.size()-1] = nums[nums.size()-1];
+        for(int i = nums.size()-2; i >=0; i--)
+        {
+            maxAmt[i] = max(nums[i] + maxAmt[i+2], maxAmt[i+1]);
+        }
+        return maxAmt[0];
     }
 };
