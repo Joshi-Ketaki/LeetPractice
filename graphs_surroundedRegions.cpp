@@ -39,8 +39,53 @@ Constraints:
 /*
 SOLUTION
 */
-
+//Pass 2:
 class Solution {
+public:
+        void check(vector<vector<char>>& board, vector<vector<int>>& visited, int i, int j, int r, int c)
+        {
+            if(visited[i][j] == 1) return;
+            visited[i][j] = 1;
+            if(i > 0 && board[i-1][j] == 'O')
+                check(board, visited, i-1, j, r,c);
+            if(j > 0 && board[i][j-1] == 'O')
+                check(board, visited, i, j-1, r,c);
+            if(i < r-1 && board[i+1][j] == 'O')
+                check(board, visited, i+1, j, r,c);
+            if(j < c-1 && board[i][j+1] == 'O')
+                check(board, visited, i, j+1, r, c);
+        }
+
+        void solve(vector<vector<char>>& board) {
+             int r = board.size();
+             int c = board[0].size();
+             vector<vector<int>> visited(r, vector<int>(c, 0));
+
+             for(int i = 0; i < r; i++)
+             {
+                 for(int j = 0; j < c; j++)
+                 {
+                     if(i == 0 || j == 0 || i == r-1 || j == c-1)
+                     {
+                        if(board[i][j]=='O' && visited[i][j]!=1)
+                            check(board, visited, i, j, r, c);
+                     }
+                 }
+             }
+
+            for(int i = 0; i < r; i++)
+            {
+                for(int j = 0; j < c; j++)
+                {
+                    if(board[i][j]=='O' && visited[i][j]!=1)
+                        board[i][j] = 'X';
+                }
+            
+            }
+
+        }
+};
+/*class Solution {
 public:
     
     void markVisited(vector<vector<char>>& board, vector<vector<int>> &visited, int i, int j, int rows, int cols)
@@ -105,4 +150,4 @@ public:
         }
        
     }
-};
+};*/
