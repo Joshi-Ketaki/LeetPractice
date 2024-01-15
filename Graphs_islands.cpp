@@ -42,10 +42,52 @@ Constraints:
 */
 
 /*SOLUTION:*/
+//Pass 2:
+
 class Solution {
 public:
+    void check(vector<vector<char>>& grid, int i, int j, int r, int c)
+    {
+        grid[i][j] = '2';
+        if(i > 0 && grid[i-1][j] == '1')
+            check(grid, i-1, j, r, c);
+        if(j > 0 && grid[i][j-1] == '1')
+            check(grid, i, j-1, r, c);
+        if(i < r-1 && grid[i+1][j] == '1')
+            check(grid, i+1, j, r, c);
+        if(j < c-1 && grid[i][j+1] == '1')
+            check(grid, i, j+1, r, c);
+    }
 
-    void keepTabs(vector<vector<char>>& grid, int i, int j, int rows, int cols){
+
+    int numIslands(vector<vector<char>>& grid) {
+        int r = grid.size();
+        int c = grid[0].size();
+        int numIslands = 0;
+        for(int i = 0; i < r; i++)
+        {
+            for(int j = 0; j < c; j++)
+            {
+                if(grid[i][j] == '1')
+                {
+                    check(grid, i, j, r, c);
+                    numIslands++;
+                }
+            }
+        }
+    return numIslands;
+    }
+};
+
+
+
+
+
+
+
+
+
+    /*void keepTabs(vector<vector<char>>& grid, int i, int j, int rows, int cols){
         grid[i][j] = '2';
         if(i > 0 && grid[i-1][j] == '1'){
             keepTabs(grid, i-1, j, rows, cols);
@@ -74,6 +116,4 @@ public:
                 }
             }
         }
-        return numIslands;
-    }
-};
+        return numIslands;*/
