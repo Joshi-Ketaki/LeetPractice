@@ -84,8 +84,41 @@ public:
     }
 };
 */
-
+// Pass 2
 class Solution {
+public:
+    // map of node. and its copy
+    unordered_map<int, Node*> mp;
+    void makeCopy (Node* dc, Node* node)
+    {
+        dc->val = node->val;
+        //for(int i = 0; i < node->neighbors.size();i++)
+        for(auto &i:node->neighbors)
+        {
+            if(mp.count(i->val) > 0)
+            {
+                dc->neighbors.push_back(mp[i->val]);
+            }
+            else
+            {
+                Node *tmp = new Node();
+                mp[i->val] = tmp;
+                dc->neighbors.push_back(mp[i->val]);
+                // do same for the new neighbor copy and its corresponding node in the graph i.e. i
+                makeCopy(tmp, i);
+            }
+        }
+    }
+
+    Node* cloneGraph(Node* node) {
+      Node *dc = new Node;
+      if(node == NULL) return NULL;
+      mp[1] = dc;
+      makeCopy(dc, node);
+      return dc;
+    }
+};
+/*class Solution {
 public:
     unordered_map<int, Node*> mp;
     void makeCopy (Node* dcopy, Node* node)
@@ -114,4 +147,4 @@ public:
         makeCopy(dcopy, node);
         return dcopy;
     }
-};
+};*/
