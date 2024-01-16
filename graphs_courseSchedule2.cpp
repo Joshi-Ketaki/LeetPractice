@@ -47,8 +47,74 @@ Constraints:
 */
 
 /*SOLUTION*/
-
+// Pass 2
 class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<int> prereq[numCourses];
+        vector<int> inorder(numCourses, 0);
+        vector<int> schedule;
+        queue<int> q;
+
+        if(numCourses == 0) return schedule;
+        if(numCourses == 1) 
+        {
+            schedule.push_back(0);
+            return schedule;
+        }
+
+        for(int i = 0; i < prerequisites.size(); i++)
+        {
+            //index = course, values=dependencies
+            prereq[prerequisites[i][0]].push_back(prerequisites[i][1]);
+        }
+        for(int i = 0; i < numCourses; i++)
+        {
+            for(auto adjNode: prereq[i]){
+                inorder[adjNode]++;
+            }
+        }
+
+        for(int i = 0; i < numCourses; i++)
+        {
+            if(inorder[i] == 0)
+                q.push(i);
+        }
+
+        while(!q.empty())
+        {
+            int c = q.front();
+            q.pop();
+            schedule.push_back(c);
+            // one incoming as self as well
+            inorder[c]--;
+            if(inorder[c] == 0) 
+                q.push(c);
+            // reduce incoming of all those who this c depended on
+            for(auto &pr: prereq[c])
+            {
+                inorder[pr]--;
+                if(inorder[pr] == 0)
+                    q.push(pr);
+            }
+            
+
+        }
+
+        reverse(schedule.begin(), schedule.end());
+        if(schedule.size() >= numCourses)
+        {
+            return schedule;
+        }
+        else
+        {
+            schedule.erase(schedule.begin(), schedule.end());
+            return schedule;
+        }
+
+    }
+};
+/*class Solution {
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
           vector<int> prereq[numCourses];
@@ -97,4 +163,4 @@ public:
         return courseOrder;
       }
       vector<int> empty;
-      return empty;
+      return empty;*/
