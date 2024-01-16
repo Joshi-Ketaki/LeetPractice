@@ -43,45 +43,67 @@ Constraints:
 
 class Solution {
 public:
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-      vector<int> prereq[numCourses];
-      vector<int> indegree(numCourses, 0);
-      queue<int> q;
-      int ctr=0, i;
-      if(prerequisites.size() == 0) return true;
-      for(i = 0; i < prerequisites.size();i++)  
-      {
-          prereq[prerequisites[i][0]].push_back(prerequisites[i][1]);
-      }
-      for(i =0; i <  numCourses; i++)
-      {
-        for (int adjNode : prereq[i]){
-              indegree[adjNode]++; // calculating indegree of every node
-          }
-      }
-      for(i = 0; i < numCourses;i++)  
-      {
-        if(indegree[i] == 0) {
-          ///cout<< "pushed";
-          q.push(i);
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites)  {
+        vector<int> prereq[numCourses];
+        vector<int> inorder(numCourses, 0);
+        vector<int> schedule;
+        queue<int> q;
+
+        if(numCourses == 0) return true;
+        if(numCourses == 1) 
+        {
+            schedule.push_back(0);
+            return true;
         }
-      }
-      while(!q.empty()){
-        int node = q.front();
-        q.pop();
-        ctr++;
-        for(auto &i:prereq[node]){
-          indegree[i]--;
-          if(indegree[i] == 0)
-          {
-            q.push(i);
-          }
+
+        for(int i = 0; i < prerequisites.size(); i++)
+        {
+            //index = course, values=dependencies
+            prereq[prerequisites[i][0]].push_back(prerequisites[i][1]);
         }
-      }
-      if(ctr == numCourses) {
-        //cout<<"ctr" << ctr;
-        return true;
-      }
-      return false;
+        for(int i = 0; i < numCourses; i++)
+        {
+            for(auto adjNode: prereq[i]){
+                inorder[adjNode]++;
+            }
+        }
+
+        for(int i = 0; i < numCourses; i++)
+        {
+            if(inorder[i] == 0)
+                q.push(i);
+        }
+
+        while(!q.empty())
+        {
+            int c = q.front();
+            q.pop();
+            schedule.push_back(c);
+            // one incoming as self as well
+            inorder[c]--;
+            if(inorder[c] == 0) 
+                q.push(c);
+            // reduce incoming of all those who this c depended on
+            for(auto &pr: prereq[c])
+            {
+                inorder[pr]--;
+                if(inorder[pr] == 0)
+                    q.push(pr);
+            }
+            
+
+        }
+
+        reverse(schedule.begin(), schedule.end());
+        if(schedule.size() >= numCourses)
+        {
+            return true;
+        }
+        else
+        {
+            //schedule.erase(schedule.begin(), schedule.end());
+            return false;
+        }
+
     }
 };
